@@ -154,7 +154,7 @@ public class AppGUI extends javax.swing.JFrame {
                             .addComponent(secondNameTextField)
                             .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -252,6 +252,7 @@ public class AppGUI extends javax.swing.JFrame {
 
     private void showNextPriorityGroupBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showNextPriorityGroupBtnMouseClicked
         displayBox.setText(vL.showNextPriorityGroupInfo());
+        JOptionPane.showMessageDialog(this, "The inforamtion of the people in the next priority group will be displayed and removed from the queue");
     }//GEN-LAST:event_showNextPriorityGroupBtnMouseClicked
 
     private void showNextPriorityGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showNextPriorityGroupBtnActionPerformed

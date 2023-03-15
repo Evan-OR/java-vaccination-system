@@ -56,7 +56,7 @@ public class VaccinationList {
         int priority = queue.get(queue.size()-1).getPriority();
         
         str += "Next Priority Group : People aged " + priorityGroupNames[priority-1];
-        str += "\n";
+        str += "\n\n";
         
         ArrayList<Person> peopleInGroup = getPeopleByPriority(priority);
         str += getDetails(peopleInGroup);
@@ -71,6 +71,7 @@ public class VaccinationList {
             if(queue.get(i).getPriority() < priority) return group;
             
             group.add(queue.get(i));
+            queue.remove(i);
         }
         
         return group;

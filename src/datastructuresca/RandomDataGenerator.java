@@ -17,7 +17,9 @@ public class RandomDataGenerator {
     private String[] secondNames = {"O\'Rourke", "Armantrout", "Banks", "Beaumont", "Charters", "Chechik", "Cutwright", "David", "Diamond", "Douglas", "Edwards", "Ellison", "Evans", 
         "Fairchild", "Farwell", "Fernandes", "Gillman", "Goodman", "Hammer", "Hennessy", "Kaalberg", "Kendall", "Lawson", "Lincoln", "Manning", "Nando" , "Oliveira"};
     
-    public RandomDataGenerator(){}
+    public RandomDataGenerator(){
+        System.out.println(firstNames.length + " : " + secondNames.length);
+    }
     
     public Person generateRandomPerson(){
         return new Person(generateRandomName(), generateRandomInt(), generateRandomBoolean());
