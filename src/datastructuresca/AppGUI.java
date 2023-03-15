@@ -239,12 +239,10 @@ public class AppGUI extends javax.swing.JFrame {
             age = Integer.parseInt(ageTextField.getText());
             if (age < 0){
                 JOptionPane.showMessageDialog(this, "Please enter a valid integer number for the AGE field!");
-                clearInputs();
                 return;
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Please enter a valid integer number for the AGE field!");
-            clearInputs();
             return;
         }
         

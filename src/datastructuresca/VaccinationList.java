@@ -39,7 +39,8 @@ public class VaccinationList {
             str += "Name: " + p.getName() + "\n" + 
                    "Age: " + p.getAge() + "\n" + 
                    "Has Medical Condition: " + p.getHasMedicalCondition()+ "\n" + 
-                   "Priority Group: " + p.getPriority() + " (People aged " + priorityGroupNames[p.getPriority()-1] + ")" + "\n" + 
+                   "Priority: " + p.getPriority() + "\n" +
+                   "Group: People aged " + priorityGroupNames[p.getPriority()-1] + "\n" + 
                     "-------------------------" + "\n" ;
         }
         return str;
