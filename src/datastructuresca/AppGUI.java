@@ -224,23 +224,33 @@ public class AppGUI extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         //name text
+        if (firstNameTextField.getText().equals("") || secondNameTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter a value for both First and Second name!");
+            return;
+        }
+        
         String name = firstNameTextField.getText() + " " + secondNameTextField.getText();
+        
         //age text
         int age;
+        
+//      Handle age input
         try {
             age = Integer.parseInt(ageTextField.getText());
             if (age < 0){
-                JOptionPane.showMessageDialog(this, "Please enter a valid integer number for the AGE field.");
+                JOptionPane.showMessageDialog(this, "Please enter a valid integer number for the AGE field!");
                 clearInputs();
                 return;
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Please enter a valid integer number for the AGE field.");
+            JOptionPane.showMessageDialog(this, "Please enter a valid integer number for the AGE field!");
             clearInputs();
             return;
         }
+        
         //has condition
         boolean hasMedicalCondition = hasMedicalConditionCheck.isSelected();
+        
         vL.insertPerson(new Person(name, age, hasMedicalCondition));
         JOptionPane.showMessageDialog(this, "New registration added");
         clearInputs();
