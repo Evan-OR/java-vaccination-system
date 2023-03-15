@@ -40,6 +40,8 @@ public class AppGUI extends javax.swing.JFrame {
         nameLabel1 = new javax.swing.JLabel();
         secondNameTextField = new javax.swing.JTextField();
         showNextPriorityGroupBtn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        displayBox = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vaccine Scheduler");
@@ -62,7 +64,7 @@ public class AppGUI extends javax.swing.JFrame {
 
         ageLabel1.setText("Has Medical Condition");
 
-        queueDetailsBtn.setText("Show Vaccine Queue Details");
+        queueDetailsBtn.setText("Display Full Queue");
         queueDetailsBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 queueDetailsBtnMouseClicked(evt);
@@ -74,7 +76,7 @@ public class AppGUI extends javax.swing.JFrame {
             }
         });
 
-        numOfRegistrationsBtn.setText("Show Number Of Registrations");
+        numOfRegistrationsBtn.setText("Display Number Of Registrations");
         numOfRegistrationsBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 numOfRegistrationsBtnMouseClicked(evt);
@@ -106,20 +108,37 @@ public class AppGUI extends javax.swing.JFrame {
             }
         });
 
-        showNextPriorityGroupBtn.setText("Show Next Priority Group");
+        showNextPriorityGroupBtn.setText("Display Next Priority Group");
         showNextPriorityGroupBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 showNextPriorityGroupBtnMouseClicked(evt);
             }
         });
+        showNextPriorityGroupBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showNextPriorityGroupBtnActionPerformed(evt);
+            }
+        });
+
+        displayBox.setEditable(false);
+        displayBox.setColumns(20);
+        displayBox.setRows(5);
+        jScrollPane2.setViewportView(displayBox);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(showNextPriorityGroupBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(queueDetailsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(numOfRegistrationsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(ageLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -133,43 +152,42 @@ public class AppGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(firstNameTextField)
                             .addComponent(secondNameTextField)
-                            .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(queueDetailsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(numOfRegistrationsBtn)
-                            .addComponent(showNextPriorityGroupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(54, 54, 54))
+                            .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameLabel)
-                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameLabel1)
-                    .addComponent(secondNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ageLabel)
-                    .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ageLabel1)
-                    .addComponent(hasMedicalConditionCheck))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(addBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(showNextPriorityGroupBtn)
-                .addGap(18, 18, 18)
-                .addComponent(queueDetailsBtn)
-                .addGap(18, 18, 18)
-                .addComponent(numOfRegistrationsBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nameLabel)
+                            .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(nameLabel1)
+                            .addComponent(secondNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ageLabel)
+                            .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ageLabel1)
+                            .addComponent(hasMedicalConditionCheck))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(addBtn)
+                        .addGap(46, 46, 46)
+                        .addComponent(showNextPriorityGroupBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(queueDetailsBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(numOfRegistrationsBtn)
+                        .addGap(0, 8, Short.MAX_VALUE)))
                 .addGap(27, 27, 27))
         );
 
@@ -193,26 +211,39 @@ public class AppGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_numOfRegistrationsBtnActionPerformed
 
     private void queueDetailsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_queueDetailsBtnMouseClicked
-        JOptionPane.showMessageDialog(this, vL.getDetails());
+        displayBox.setText(vL.getDetails(vL.getQueue()));
     }//GEN-LAST:event_queueDetailsBtnMouseClicked
 
     private void numOfRegistrationsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_numOfRegistrationsBtnMouseClicked
-        JOptionPane.showMessageDialog(this, "Number of people registered for vaccination: " + vL.getNumberOfRegistrations());
+        displayBox.setText("Number of people registered for vaccination: " + vL.getNumberOfRegistrations());
     }//GEN-LAST:event_numOfRegistrationsBtnMouseClicked
 
     private void addBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBtnMouseClicked
-        //name text
-        String name = firstNameTextField.getText() + " " + secondNameTextField.getText();
-        //age text
-        int age = Integer.parseInt(ageTextField.getText());
-        //has condition
-        boolean hasMedicalCondition = hasMedicalConditionCheck.isSelected();
-        JOptionPane.showMessageDialog(this, name + " : " + age + " : " + hasMedicalCondition);
-        
+
     }//GEN-LAST:event_addBtnMouseClicked
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:
+        //name text
+        String name = firstNameTextField.getText() + " " + secondNameTextField.getText();
+        //age text
+        int age;
+        try {
+            age = Integer.parseInt(ageTextField.getText());
+            if (age < 0){
+                JOptionPane.showMessageDialog(this, "Please enter a valid integer number for the AGE field.");
+                clearInputs();
+                return;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid integer number for the AGE field.");
+            clearInputs();
+            return;
+        }
+        //has condition
+        boolean hasMedicalCondition = hasMedicalConditionCheck.isSelected();
+        vL.insertPerson(new Person(name, age, hasMedicalCondition));
+        JOptionPane.showMessageDialog(this, "New registration added");
+        clearInputs();
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void secondNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_secondNameTextFieldActionPerformed
@@ -220,8 +251,12 @@ public class AppGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_secondNameTextFieldActionPerformed
 
     private void showNextPriorityGroupBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showNextPriorityGroupBtnMouseClicked
-        JOptionPane.showMessageDialog(this, "Next Priority Group : People aged " + vL.showNextPriorityGroup());
+        displayBox.setText(vL.showNextPriorityGroupInfo());
     }//GEN-LAST:event_showNextPriorityGroupBtnMouseClicked
+
+    private void showNextPriorityGroupBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showNextPriorityGroupBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showNextPriorityGroupBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,22 +287,13 @@ public class AppGUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         
+        RandomDataGenerator rdg = new RandomDataGenerator();
         
-        Person evan = new Person("Evan",22, false);
-        Person kevin = new Person("Kevin", 32, false);
-        Person erik = new Person("Erik", 42, false);
-        Person oldAndSickPerson = new Person("Kara",56, true);
-        Person veryOldPerson = new Person("Katie", 82, false);
-        Person oldPerson = new Person("Scott", 55, false);
+        for (int i = 0; i < 30; i++){
+            vL.insertPerson(rdg.generateRandomPerson());
+        }
         
-        vL.insertPerson(veryOldPerson); //P9
-        vL.insertPerson(erik); //P6
-        vL.insertPerson(oldPerson);//P5
-        vL.insertPerson(kevin); //P3
-        vL.insertPerson(oldAndSickPerson); //P6
-        vL.insertPerson(evan); // P2
-        
-        System.out.println(vL.getDetails());
+//        System.out.println(vL.getDetails(vL.getQueue()));
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -276,14 +302,23 @@ public class AppGUI extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void clearInputs(){
+        firstNameTextField.setText("");
+        secondNameTextField.setText("");
+        ageTextField.setText("");
+        hasMedicalConditionCheck.setSelected(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JLabel ageLabel;
     private javax.swing.JLabel ageLabel1;
     private javax.swing.JTextField ageTextField;
+    private javax.swing.JTextArea displayBox;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JCheckBox hasMedicalConditionCheck;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel nameLabel1;
     private javax.swing.JButton numOfRegistrationsBtn;

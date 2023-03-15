@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class VaccinationList {
     
     private ArrayList<Person> queue = new ArrayList<>();
-    static String[] priorityGroups = {"Under 18", "19-29", "30-44", "45-54", "55-64", "18-64 with medical condition(s)", "65-69", "70 and older", "80 and older", "90 and older"};
+    static String[] priorityGroupNames = {"Under 18", "19-29", "30-44", "45-54", "55-64", "18-64 with medical condition(s)", "65-69", "70 and older", "80 and older", "90 and older"};
     
     public VaccinationList(){};
     
@@ -33,14 +33,14 @@ public class VaccinationList {
         queue.add(p);
     }
     
-    public String getDetails(){
+    public String getDetails(ArrayList<Person> list){
         String str = "";
-        for(Person p : queue){
-            str += "-------------------------" + "\n" +
-                   "Name: " + p.getName() + "\n" + 
+        for(Person p : list){
+            str += "Name: " + p.getName() + "\n" + 
                    "Age: " + p.getAge() + "\n" + 
                    "Has Medical Condition: " + p.getHasMedicalCondition()+ "\n" + 
-                   "Priority Group: People aged " + priorityGroups[p.getPriority()-1] + "\n";
+                   "Priority Group: " + p.getPriority() + " (People aged " + priorityGroupNames[p.getPriority()-1] + ")" + "\n" + 
+                    "-------------------------" + "\n" ;
         }
         return str;
     }
@@ -49,9 +49,34 @@ public class VaccinationList {
         return queue.size();
     }
     
-    public String showNextPriorityGroup(){
+    public String showNextPriorityGroupInfo(){
         if (queue.size() == 0) return "Queue Is Empty!";
         
-        return priorityGroups[queue.get(queue.size()-1).getPriority()-1];
+        String str = "";
+        int priority = queue.get(queue.size()-1).getPriority();
+        
+        str += "Next Priority Group : People aged " + priorityGroupNames[priority-1];
+        str += "\n";
+        
+        ArrayList<Person> peopleInGroup = getPeopleByPriority(priority);
+        str += getDetails(peopleInGroup);
+        
+        return str;
+    }
+    
+    public ArrayList<Person> getPeopleByPriority(int priority){
+        ArrayList<Person> group = new ArrayList<>();
+        
+        for(int i = queue.size()-1; i >= 0; i--){
+            if(queue.get(i).getPriority() < priority) return group;
+            
+            group.add(queue.get(i));
+        }
+        
+        return group;
+    }
+    
+    public ArrayList<Person> getQueue(){
+        return queue;
     }
 }
