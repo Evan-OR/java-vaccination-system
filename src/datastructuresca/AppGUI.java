@@ -270,7 +270,7 @@ public class AppGUI extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    static VaccinationList vL = new VaccinationList();
+    static VaccinationQueue vL = new VaccinationQueue();
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -298,10 +298,12 @@ public class AppGUI extends javax.swing.JFrame {
         
         RandomDataGenerator rdg = new RandomDataGenerator();
         
-        for (int i = 0; i < 30; i++){
-            vL.insertPerson(rdg.generateRandomPerson());
+        int numOfTestPeople = 30;
+        for (int i = 0; i <= numOfTestPeople; i++){
+            Person newPerson = rdg.generateRandomPerson();
+            System.out.println(newPerson.getAge());
+            vL.insertPerson(newPerson);
         }
-        
 //        System.out.println(vL.getDetails(vL.getQueue()));
 
         /* Create and display the form */

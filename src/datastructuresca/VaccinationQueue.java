@@ -8,20 +8,21 @@ import java.util.ArrayList;
  *
  * @author Evan
  */
-public class VaccinationList {
+public class VaccinationQueue {
     
     private ArrayList<Person> queue = new ArrayList<>();
-    static String[] priorityGroupNames = {"Under 18", "19-29", "30-44", "45-54", "55-64", "18-64 with medical condition(s)", "65-69", "70 and older", "80 and older", "90 and older"};
+    private String[] priorityGroupNames = {"Under 18", "19-29", "30-44", "45-54", "55-64", "18-64 with medical condition(s)", "65-69", "70 and older", "80 and older", "90 and older"};
     
-    public VaccinationList(){};
+    public VaccinationQueue(){};
     
     public void insertPerson(Person p){
         //ArrayList is Empty
-        if(queue.size() == 0){
+        if(queue.isEmpty()){
             queue.add(p);
             return;
         }
         
+        //Find insertion point
         for(int i = 0; i < queue.size(); i++){
             if(queue.get(i).getPriority() > p.getPriority()){
                 queue.add(i, p);
@@ -29,19 +30,22 @@ public class VaccinationList {
             }
         }
         
-        //If Person was never added
+        //If a greater priority was not found
+        //just add person to end of ArrayList        
         queue.add(p);
     }
     
     public String getDetails(ArrayList<Person> list){
+        if(list.isEmpty()) return "Queue is empty";
+        
         String str = "";
         for(Person p : list){
             str += "Name: " + p.getName() + "\n" + 
-                   "Age: " + p.getAge() + "\n" + 
+                   "Age: " + p.getAge()+ "\n" + 
                    "Has Medical Condition: " + p.getHasMedicalCondition()+ "\n" + 
                    "Priority: " + p.getPriority() + "\n" +
                    "Group: People aged " + priorityGroupNames[p.getPriority()-1] + "\n" + 
-                    "-------------------------" + "\n" ;
+                   "-------------------------" + "\n";
         }
         return str;
     }

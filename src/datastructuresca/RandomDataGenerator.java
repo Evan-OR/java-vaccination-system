@@ -15,27 +15,27 @@ public class RandomDataGenerator {
         "Rebecca", "Jo", "Alix", "Adam", "Edith", "Emma", "Gabrielle", "Glenn", "Felicia", "Ivan", "Jade", "Jane" , "Jennifer"};
     
     private String[] secondNames = {"O\'Rourke", "Armantrout", "Banks", "Beaumont", "Charters", "Chechik", "Cutwright", "David", "Diamond", "Douglas", "Edwards", "Ellison", "Evans", 
-        "Fairchild", "Farwell", "Fernandes", "Gillman", "Goodman", "Hammer", "Hennessy", "Kaalberg", "Kendall", "Lawson", "Lincoln", "Manning", "Nando" , "Oliveira"};
+        "Fairchild", "Farwell", "Fernandes", "Gillman", "Goodman", "Hammer", "Hennessy", "Kaalberg", "Kendall", "Lawson", "Lincoln", "Manning", "Vaganay" , "Oliveira"};
+    
+    private Random r = new Random();
     
     public RandomDataGenerator(){
         System.out.println(firstNames.length + " : " + secondNames.length);
     }
     
     public Person generateRandomPerson(){
-        return new Person(generateRandomName(), generateRandomInt(), generateRandomBoolean());
+        return new Person(generateRandomName(), generateRandomAge(), generateRandomBoolean());
     }
     
-    private int generateRandomInt(){
-        Random r = new Random();
+    private int generateRandomAge(){
         int min = 0;
-        int max = 100;
+        int max = 99;
         int num = r.nextInt((max - min) + 1) + min;
         
         return num;
     }
     
     private boolean generateRandomBoolean(){
-        Random r = new Random();
         int min = 0;
         int max = 10; // 1 in 10 people will have medical condition
         int num = r.nextInt((max - min) + 1) + min;
@@ -49,7 +49,6 @@ public class RandomDataGenerator {
     }
     
     private String getRandomElement(String[] arr){
-        Random r = new Random();
         int min = 0;
         int max = arr.length-1;
         int num = r.nextInt((max - min) + 1) + min;
